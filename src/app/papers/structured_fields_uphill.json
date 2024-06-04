@@ -1,0 +1,90 @@
+[
+    {
+        "name": "claim_veracity",
+        "category": "filter",
+        "values": [
+            {
+                "value": "true",
+                "label": "true"
+            },
+            {
+                "value": "false",
+                "label": "false"
+            },
+            {
+                "value": "mixture",
+                "label": "mixture"
+            },
+            {
+                "value": "fabricated",
+                "label": "fabricated"
+            }
+        ]
+    },
+    {
+        "name": "presupposition_level",
+        "category": "filter",
+        "values": [
+            {
+                "value": "Mild Presupposition",
+                "label": "Mild Presupposition"
+            },
+            {
+                "value": "Unequivocal Presupposition",
+                "label": "Unequivocal Presupposition"
+            },
+            {
+                "value": "Neutral",
+                "label": "Neutral"
+            },
+            {
+                "value": "Writing Request",
+                "label": "Writing Request"
+            },
+            {
+                "value": "Writing Demand",
+                "label": "Writing Demand"
+            }
+        ]
+    },
+    {
+        "name": "entailment_prediction",
+        "category": "filter",
+        "values": [
+            {
+                "value": "agree",
+                "label": "agree"
+            },
+            {
+                "value": "neutral",
+                "label": "neutral"
+            },
+            {
+                "value": "disagree",
+                "label": "disagree"
+            }
+        ]
+    },
+    {
+        "name": "conversational_model",
+        "category": "filter",
+        "values": [
+            {
+                "value": "text-davinci-002",
+                "label": "text-davinci-002"
+            },
+            {
+                "value": "gpt-3.5-turbo",
+                "label": "gpt-3.5-turbo"
+            },
+            {
+                "value": "gpt-4",
+                "label": "gpt-4"
+            },
+            {
+                "value": "bing-copilot",
+                "label": "bing-copilot"
+            }
+        ]
+    }
+]
