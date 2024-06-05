@@ -31,6 +31,12 @@ interface DataTableFacetedFilterProps<TData, TValue> {
   }[]
 }
 
+function capitalizeWords(input: string): string {
+  return input.split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+}
+
 export function DataTableFacetedFilter<TData, TValue>({
   column,
   title,
@@ -44,7 +50,8 @@ export function DataTableFacetedFilter<TData, TValue>({
       <PopoverTrigger className="my-1 mr-1" asChild>
         <Button variant="outline" size="sm" className="h-8 border-dashed">
           <PlusCircledIcon className="mr-2 h-4 w-4" />
-          {title}
+          {/* {title} */}
+          {capitalizeWords(title?.replace(/_/g, " ") ?? "")}
           {selectedValues?.size > 0 && (
             <>
               <Separator orientation="vertical" className="mx-2 h-4" />

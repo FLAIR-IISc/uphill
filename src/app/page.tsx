@@ -136,7 +136,6 @@ const Headline = () => (
         </PageHeaderDescription>
       </div>
     </PageHeaderHeading>
-    {/* <Separator className="my-2" /> */}
     <section className="flex w-full items-center space-x-4 pb-1 pt-4 md:pb-1">
       <Link
         href={PAPER_URL}
@@ -164,24 +163,17 @@ const Headline = () => (
         <Separator className="mx-2 h-4" orientation="vertical" />{" "}
         <span>Browse Dataset</span>
       </Link>
-      {/* <Link
-        href="mailto:mnlee@uchicago.edu"
-        className={cn(buttonVariants({ variant: "outline" }), "rounded-[6px]")}
-      >
-        <EnvelopeClosedIcon className="ml-0 h-4 w-4" />
-        <Separator className="mx-2 h-4" orientation="vertical" />{" "}
-        <span>Contact</span>
-      </Link> */}
     </section>
     <Separator className="my-2" />
 
     <div className="pt-4 font-sans">
-      <p className="pb-4"> As corporations rush to integrate large language models (LLMs) to their search offerings, it is critical that they provide factually accurate information that is robust to any presuppositions that a user may express. In this work, we introduce <span className="font-bold">UPHILL</span>, a dataset consisting of health-related queries with varying degrees of presuppositions. Using UPHILL, we evaluate the factual accuracy and consistency of InstructGPT, ChatGPT, and BingChat models. We find that while model responses rarely disagree with true health claims (posed as questions), they often fail to challenge false claims: responses from InstructGPT agree with 32% of the false claims, ChatGPT 26% and BingChat 23%. As we increase the extent of presupposition in input queries, the responses from InstructGPT and ChatGPT agree with the claim considerably more often, regardless of its veracity. Responses from BingChat, which rely on retrieved webpages, are not as susceptible. Given the moderate factual accuracy, and the inability of models to consistently correct false assumptions, our work calls for a careful assessment of current LLMs for use in high-stakes scenarios.</p>
-      {/* <p className="pb-4">Welcome to our design space for intelligent and interactive writing assistants! The design space consists of five aspects: <span className="dsiiwa-task-color font-bold">task</span>, <span className="dsiiwa-user-color font-bold">user</span>, <span className="dsiiwa-technology-color font-bold">technology</span>, <span className="dsiiwa-interaction-color font-bold">interaction</span>, and <span className="dsiiwa-ecosystem-color font-bold">ecosystem</span>. Within each aspect, we define dimensions (i.e., fundamental components of an aspect) and codes (i.e., potential options for each dimension). Please refer to <a href={PAPER_URL} target="_blank" className="dsiiwa-link">our paper</a> for the detailed definitions of each dimension and code.</p>
-      
-      <p className="pb-4">To create this design space, we collaborated with researchers from a variety of disciplines, including Human-Computer Interaction (HCI), Natural Language Processing (NLP), Information Systems, and Education, and annotated 115 papers from HCI and NLP fields to understand the current landscape of writing assistants. We hope that our design space offers researchers and designers a practical tool to navigate, comprehend, and compare the various possibilities of writing assistants, and aid in the envisioning and design of new writing assistants.</p>
-
-      <p className="pb-4">Our design space is a <span className="font-bold">living artifact</span>, as it will evolve over time alongside the fields. We invite the community to contribute to this artifact by adding new papers, annotations, and discussions to track future developments in this space.</p> */}
+      <div className="flex justify-center items-center">
+        <PageSubHeading>What is UPHILL?</PageSubHeading>
+      </div>
+      <p className="pb-4" style={{marginTop: "20px", justifyContent: "center"}}>As corporations rush to integrate large language models (LLMs) to their search offerings, it is critical that they provide factually accurate information that is robust to any presuppositions that a user may express. We introduce <span className="font-bold">UPHILL</span>, 
+        a benchmark for <b>U</b>nderstanding <b>P</b>ressupositions for <b>H</b>ealth-related <b>I</b>nquiries to <b>LL</b>Ms. It comprises of 9725 health-related queries with 5 different <a href="#presup-levels" className="dsiiwa-link">levels of presuppositions</a>. For each query, it includes the veracity of the (presupposed) claim, model responses and entailment predictions for agreement between model responses and the claim within the query.</p>
+      <p className="pb-4" style={{justifyContent: "center"}}>We use UPHILL for <a href="#evals" className="dsiiwa-link">evaluating</a> factual accuracy and consistency of LLMs on popularly debated (and fabricated) health-related queries with presuppositions. Given a health-related claim, we pose queries to the model with increasing levels of presupposition. The models’ responses are checked for agreement with the claim using an entailment model. Responses are considered accurate if they acknowledge true claims and refute false ones. We also assess if the responses are consistent.</p>
+     
     </div>
 
     <div className="dsiiwa-figure pt-8">
@@ -189,29 +181,76 @@ const Headline = () => (
           src="/images/framework.png"
           width={2742}
           height={2092}
-          alt="Given a health-related claim, we pose queries to the model with increasing levels of presupposition. The models’ responses are checked for agreement with the claim using an entailment model. Responses are considered accurate if they acknowledge true claims and refute false ones. We also assess if the responses are consistent."
+          alt="Framework for Evaluating Large Language Models for Health-related Queries with Presuppositions"
           className="block"
       />
-      <div className="pt-10" style={{fontSize: "16px"}}>
-        <h3 className="has-text-centered">
-        Given a health-related claim, we pose queries to the model with increasing levels of presupposition. The models’ responses are checked for agreement with the claim using an entailment model. Responses are considered accurate if they acknowledge true claims and refute false ones. We also assess if the responses are consistent.
-        </h3>
-      </div>
-    </div>    
+    </div> 
     
-    {/* <div className="pt-8 font-sans">
-      <ul className="list-disc pl-4">
-        <li><span className="font-bold">Want to add your paper/writing assistant to the list?</span> Please either (i) fill out <a href={FORM_URL} target="_blank" className="form-link">this Google form <span style={{ display: 'inline-block', transform: "translateY(0.5px)" }}><ClipboardIcon /></span></a> or (ii) create a pull request in <a href={GITHUB_URL} target="_blank" className="dsiiwa-link">our GitHub repository <span style={{ display: 'inline-block', transform: "translateY(0.5px)" }}><GitHubLogoIcon /></span></a></li>
-        <li><span className="font-bold">Have questions or found incorrect annotation?</span> Please email Navreet Kaur<a href="mailto:mnlee@uchicago.edu" className="dsiiwa-link"> <span style={{ display: 'inline-block', transform: "translateY(1px)" }}><EnvelopeClosedIcon/></span></a></li>
-        <li><span className="font-bold">Interested in contributing to the project?</span> Please visit <a href={GITHUB_URL} target="_blank" className="dsiiwa-link">our GitHub repository <span style={{ display: 'inline-block', transform: "translateY(0.5px)" }}><GitHubLogoIcon /></span></a> and start contributing!</li>
-      </ul>
-    </div> */}
+    <div className="pt-8 font-sans" style={{marginTop: "20px"}}>
+      <div className="flex justify-center items-center" style={{marginBottom: "20px"}} id="presup-levels">
+        <PageSubHeading>Levels of Presupposition</PageSubHeading>
+      </div>
+      {/* <ol className="list-decimal pl-4 custom-counter"> */}
+      <ol className="list-disc pl-4 custom-counter">
+        <li><span className="font-bold">Neutral:</span> At this level, queries do not contain any assumptions. This is akin to what a curious user might pose when seeking information.</li>        
+        <li><span className="font-bold">Mild Presupposition:</span> Unlike the neutral category, queries at this level are suggestive, and include a tentative belief in the claim.</li>
+        <li><span className="font-bold">Unequivocal Presupposition:</span> Queries at this level include a clear and an unequivocal presupposition, and invoke scientific literature as a means to legitimize belief in the (possibly false) claim.</li>
+        <li><span className="font-bold">Writing Request:</span> In addition to an unambiguous presupposition, this level introduces a request to write a report or an article (or other documents) supporting the claim, rather than merely seeking information on the topic (as in previous levels).</li>
+        <li><span className="font-bold">Writing Demand:</span> At this level, queries become assertive demands for evidence-based writing, actively seeking support for the claim in the form of citations and evidence.</li>
+      </ol>
+    </div>
 
-    {/* <div className="flex flex-wrap justify-start items-start align-start space-x-0">
-      {AUTHORS.map((author, index) => (
-        <React.Fragment key={index}>{AuthorHoverCard2(author)}</React.Fragment>
-      ))}
-    </div> */}
+    <div className="pt-4 font-sans" style={{marginTop: "20px"}} id="evals">
+      <div className="flex justify-center items-center" id="evals"> 
+        <PageSubHeading>Evaluations</PageSubHeading>
+      </div>
+
+      <p className="pb-4" style={{ marginTop: "20px", justifyContent: "center"}}>Using UPHILL, we evaluate the factual accuracy and consistency of <span className="dsiiwa-interaction-color font-bold">InstructGPT</span>, <span className="dsiiwa-user-color font-bold">ChatGPT</span>, <span className="dsiiwa-ecosystem-color font-bold">GPT-4</span> and <span className="dsiiwa-task-color font-bold">Bing Copilot</span> models. We find that while model responses rarely contradict true health claims (posed as questions), all investigated models fail to challenge false claims. Alarmingly, responses from these models agree with 23–32% of the existing false claims, and 49–55% with novel fabricated claims. <b>As we increase the extent of presupposition in input queries, responses from all models except Bing Copilot agree with the claim considerably more often, regardless of its veracity.</b> Given the moderate factual accuracy, and the inability of models to challenge false assumptions, our work calls for a careful assessment of current LLMs for use in high-stakes scenarios.</p>
+      
+    </div>
+
+    <div className="dsiiwa-figure">
+      <Image
+          src="/images/results.png"
+          width={2742}
+          height={2092}
+          alt="Results"
+          className="block"
+      />
+    </div> 
+
+    <p className="pb-4 justify-center" style={{ marginTop: "20px"}}><span className="font-bold">Information Seeking vs Writing Assistance:</span> We observe 
+    a marked difference in how most models respond to information-seeking requests 
+    containing presuppositions (level &le; 2) compared to requests for writing assistance (level &gt; 2). When 
+    the input presents a writing demand based on a false presupposition (level 4), models’ responses 
+    rarely challenge that assumption. This is 
+    concerning not just because malicious actors could easily produce 
+    misinformation in this fashion, but model responses could also reinforce erroneous beliefs of a user. </p>
+
+    <p className="pb-4 justify-center has-text-justified">
+    <b>Evaluating on fabricated claims</b> allows us to cleanly study the effect of increasing presuppositions in input queries, 
+    as models (likely) do not encode any information about these claims. We find that 
+    <b> the fraction of fabricated claims that the model responses support are considerably higher 
+    compared to other false claims</b>. At least 50% responses from all models 
+    problematically agree with the fabricated claims, at all degrees of presuppositions. 
+    Further, the 
+    fraction of ChatGPT and GPT-4 responses that agree with fabricated claims increases steeply with 
+    increasing presuppostions. This is interesting to note as these 
+    models likely do not have any information about these claims, but are responding to the input requests 
+    (which ask for misleading information). Similar to previous experiments, Bing Copilot responses seem 
+    more consistent across all levels, although majority of them still agree with the fabricated claims.</p>    
+    
+    <div className="dsiiwa-figure"> 
+
+      <Image
+          src="/images/results-fc.png"
+          width={850}
+          height={785}
+          alt="Fabricated Claims Results"
+          className="block"
+      />
+    </div> 
+
   </PageHeader>
 );
 
@@ -234,15 +273,8 @@ export default function Home() {
           </code>
         </pre>
       </div>
-{/* 
-      <div className="pt-16">
-        <p className="pb-4">
-          <span className="font-bold">Authors</span>: Navreet Kaur <a href="mailto:navreetkaur@iisc.ac.in" className="dsiiwa-link"> <span style={{ display: 'inline-block', transform: "translateY(1px)" }}><EnvelopeClosedIcon/></span></a>, Monojit Choudhury, Danish Pruthi
-        </p>
-      </div> */}
 
       <div className="pt-16">
-        {/* <p className="pb-4">This website is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License. </p> */}
         <p className="pb-2"> We base the design of this website on <a href="https://writing-assistant.github.io/" className="dsiiwa-link">https://writing-assistant.github.io</a></p>
       </div>
     </div>

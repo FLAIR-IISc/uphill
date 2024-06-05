@@ -98,7 +98,7 @@
 }
 
 .dsiiwa-task-color {
-  color: #1c91bd;
+  color: #18a1d3;
 }
 
 .dsiiwa-user-color {
@@ -114,7 +114,8 @@
 }
 
 .dsiiwa-ecosystem-color {
-  color: #125434;
+  color: #119a11;
+
 }
 
 .centered {
@@ -132,6 +133,22 @@
 
 .expandable {
   cursor: pointer;
-  color: blue;
+  color: rgb(33, 116, 193);
   text-decoration: underline;
+}
+
+.custom-counter {
+  counter-reset: item -1; /* Start from -1 so the first item is 0 */
+  list-style-type: none;  /* Remove the default list styling */
+  padding-left: 0;        /* Remove the default padding */
+}
+
+.custom-counter li {
+  counter-increment: item; /* Increment counter for each li */
+  margin-left: 1em;       /* Optional: add some left margin for indentation */
+}
+
+.custom-counter li::before {
+  content: counter(item) ". "; /* Display the counter value */
+  margin-right: 0.5em; /* Optional: add some space between the counter and the content */
 }

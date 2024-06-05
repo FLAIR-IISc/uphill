@@ -13,7 +13,8 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 
-import structuredFields from "../papers/structured_fields.json";
+import structuredFields from "../papers/structured_fields_uphill_small.json";
+import otherFields from "../papers/other_fields_uphill_small.json";
 
 interface DataTableViewOptionsProps<TData> {
   table: Table<TData>;
@@ -29,6 +30,10 @@ export function DataTableViewOptions<TData>({
     },
     {}
   );
+
+  otherFields.forEach(field => {
+    fieldAndCategory[field.name] = field.category;
+  });
 
   return (
     <DropdownMenu>
@@ -56,7 +61,7 @@ export function DataTableViewOptions<TData>({
                 {fieldAndCategory[column.id] &&
                   fieldAndCategory[column.id] !==
                     fieldAndCategory[arr[index - 1]?.id] && (
-                    <DropdownMenuLabel className="capitalize">{fieldAndCategory[column.id]} Dimensions</DropdownMenuLabel>
+                    <DropdownMenuLabel className="capitalize">{fieldAndCategory[column.id]} Columns</DropdownMenuLabel>
                   )}
                 <DropdownMenuCheckboxItem
                   key={column.id}
@@ -64,7 +69,7 @@ export function DataTableViewOptions<TData>({
                   checked={column.getIsVisible()}
                   onCheckedChange={(value) => column.toggleVisibility(!!value)}
                 >
-                  {column.id}
+                  {column.id.replace(/_/g, " ")}
                 </DropdownMenuCheckboxItem>
                 {(!fieldAndCategory[column.id] ||
                   fieldAndCategory[column.id] !==

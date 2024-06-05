@@ -25,8 +25,8 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-// import structuredFields from "../papers/structured_fields.json";
 import structuredFields from "../papers/structured_fields_uphill_small.json";
+import otherFields from "../papers/other_fields_uphill_small.json";
 
 
 import { DataTablePagination } from "./data-table-pagination"
@@ -63,11 +63,12 @@ export function DataTable<TData, TValue>({
       rowSelection,
       columnFilters,
     },
-    // initialState: {
-    //   columnVisibility: {
-    //     "ID": false,
-    //   }
-    // },
+    initialState: {
+      columnVisibility: {
+        "claim": false,
+        "prediction_reasoning": false,
+      }
+    },
     enableRowSelection: true,
     onRowSelectionChange: setRowSelection,
     onSortingChange: setSorting,
@@ -86,8 +87,16 @@ export function DataTable<TData, TValue>({
 
     // Single column example 
     // table.setColumnVisibility({
-    //   "Writing Stage": false,
+    //   "prediction_reasoning": false,
+    //   "claim": false,
     // });
+
+    table.setColumnVisibility(otherFields.reduce((acc, key,) => {
+      return {
+        ...acc,
+        [key.name]: false,
+      }
+    } , {}));
 
     table.setColumnVisibility(structuredFields.reduce((acc, key,) => {
       return {

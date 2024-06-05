@@ -50,24 +50,6 @@ export function DataTableToolbar<TData>({
       </div>
       <div className="flex items-center justify-between">
         <div className="flex flex-1 items-center space-x-2">
-          {/* {categories.map((cat) => {
-            return (
-              <div key={cat} >
-                {groupedFieldsByCategory[cat].map((field) => {
-                  if (table.getColumn(field.name)) {
-                    return (
-                      <DataTableFacetedFilter
-                        key={field.name}
-                        column={table.getColumn(field.name)}
-                        title={field.name}
-                        options={field.values}
-                      />
-                    );
-                  }
-                })}
-              </div>
-            );
-          })} */}
           <Tabs defaultValue={categories[0]} className=""> 
             <TabsList>
               {categories.map((cat) => (
