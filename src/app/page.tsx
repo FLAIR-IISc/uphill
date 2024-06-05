@@ -116,7 +116,7 @@ const Headline = () => (
           src="/images/framework.png"
           width={2742}
           height={2092}
-          alt="Framework for Evaluating Large Language Models for Health-related Queries with Presuppositions"
+          alt="Framework for evaluation"
           className="block"
       />
     </div> 
