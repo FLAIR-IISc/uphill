@@ -4,20 +4,20 @@
         "category": "Filter",
         "values": [
             {
-                "value": "fabricated",
-                "label": "fabricated"
+                "value": "False",
+                "label": "False"
             },
             {
-                "value": "mixture",
-                "label": "mixture"
+                "value": "Fabricated",
+                "label": "Fabricated"
             },
             {
-                "value": "false",
-                "label": "false"
+                "value": "True",
+                "label": "True"
             },
             {
-                "value": "true",
-                "label": "true"
+                "value": "Mixture",
+                "label": "Mixture"
             }
         ]
     },
@@ -26,24 +26,24 @@
         "category": "Filter",
         "values": [
             {
-                "value": "Neutral",
-                "label": "Neutral"
+                "value": "0: Neutral",
+                "label": "0: Neutral"
             },
             {
-                "value": "Writing Demand",
-                "label": "Writing Demand"
+                "value": "3: Writing Request",
+                "label": "3: Writing Request"
             },
             {
-                "value": "Unequivocal Presupposition",
-                "label": "Unequivocal Presupposition"
+                "value": "2: Unequivocal Presupposition",
+                "label": "2: Unequivocal Presupposition"
             },
             {
-                "value": "Mild Presupposition",
-                "label": "Mild Presupposition"
+                "value": "4: Writing Demand",
+                "label": "4: Writing Demand"
             },
             {
-                "value": "Writing Request",
-                "label": "Writing Request"
+                "value": "1: Mild Presupposition",
+                "label": "1: Mild Presupposition"
             }
         ]
     },
@@ -52,16 +52,16 @@
         "category": "Filter",
         "values": [
             {
-                "value": "agree",
-                "label": "agree"
+                "value": "Disagree",
+                "label": "Disagree"
             },
             {
-                "value": "neutral",
-                "label": "neutral"
+                "value": "Neither",
+                "label": "Neither"
             },
             {
-                "value": "disagree",
-                "label": "disagree"
+                "value": "Agree",
+                "label": "Agree"
             }
         ]
     },
@@ -70,20 +70,20 @@
         "category": "Filter",
         "values": [
             {
-                "value": "gpt-3.5-turbo",
-                "label": "gpt-3.5-turbo"
+                "value": "ChatGPT",
+                "label": "ChatGPT"
             },
             {
-                "value": "text-davinci-002",
-                "label": "text-davinci-002"
+                "value": "GPT-4",
+                "label": "GPT-4"
             },
             {
-                "value": "bing-copilot",
-                "label": "bing-copilot"
+                "value": "InstructGPT",
+                "label": "InstructGPT"
             },
             {
-                "value": "gpt-4",
-                "label": "gpt-4"
+                "value": "Bing Copilot",
+                "label": "Bing Copilot"
             }
         ]
     }

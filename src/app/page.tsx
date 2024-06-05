@@ -1,33 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import dynamic from "next/dynamic";
-import React, { RefObject, useEffect, useRef, useState } from "react";
+import React from "react";
 
-import { Button, buttonVariants } from "@/components/ui/button";
+import {buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-import { GitHubLogoIcon, EnvelopeClosedIcon, RocketIcon, ReaderIcon, ClipboardIcon } from '@radix-ui/react-icons'
+import { GitHubLogoIcon, EnvelopeClosedIcon, RocketIcon, ReaderIcon, DownloadIcon } from '@radix-ui/react-icons'
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-
-import {
-  HoverCard,
-  HoverCardTrigger,
-  HoverCardContent,
-} from "@/components/ui/hover-card";
-
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
 
 import {
   PageHeader,
@@ -37,16 +18,11 @@ import {
 } from "./components/page-header";
 
 import TaskPage from "./paper";
-import next from "next";
-import { alignProp } from "@radix-ui/themes";
 
 const TITLE = "Evaluating Large Language Models for Health-related Queries with Presuppositions";
-
-
-const FORM_URL = "https://forms.gle/iyk5DiECGDdc9vSQA";
 const PAPER_URL = "https://arxiv.org/abs/2312.08800";
 const GITHUB_URL = "https://github.com/navreeetkaur/UPHILL";
-const BASE_PATH = "";
+const DATASET_URL = "https://drive.google.com/drive/folders/13H2-dA0y8eOChwI8O1AqTJTqAr1raPXf";
 const bibtexCode = `
 @article{kaur2023evaluating,
     title={Evaluating Large Language Models for Health-related Queries with Presuppositions}, 
@@ -65,55 +41,6 @@ interface Author {
   website?: string;
   avatar?: string;
 }
-
-const AUTHORS:Author[] = [
-  {"name": "Navreet Kaur", "role": "Project leads", "affiliation": "Indian Institute of Science Bangalore"},
-  {"name": "Monojit Choudhury", "role": "Advisors", "affiliation": "MBZUAI"},
-  {"name": "Danish Pruthi", "role": "Advisors", "affiliation": "Indian Institute of Science Bangalore"}
-];
-
-const AuthorHoverCard = (author: Author) => (
-  <HoverCard openDelay={100} closeDelay={100}>
-    <HoverCardTrigger className="pr-4" style={{ marginLeft: 0 }}>
-      <Button className="px-0" variant="link">
-        {author.name}
-      </Button>
-    </HoverCardTrigger>
-    <HoverCardContent>
-      <div className="flex justify-between">
-        <Avatar className="mr-4">
-          <AvatarImage src={author.avatar} />
-          <AvatarFallback>{author.name[0]}</AvatarFallback>
-        </Avatar>
-        <div className="space-y-1">
-          <h4 className="text-sm font-semibold">{author.name}</h4>
-          <p className="text-sm">{author.affiliation}</p>
-        </div>
-      </div>
-    </HoverCardContent>
-  </HoverCard>
-);
-
-
-const AuthorHoverCard2 = (author: (typeof AUTHORS)[0]) => (
-  <HoverCard openDelay={100} closeDelay={100}>
-    <HoverCardTrigger className="">
-      <Avatar className="mr-0.5 my-0.5">
-          <AvatarImage src={author.avatar} />
-          <AvatarFallback>{`${author.name.split(' ')[0][0]}${author.name.split(' ').pop()?.[0]}`}</AvatarFallback>
-      </Avatar>
-    </HoverCardTrigger>
-    <HoverCardContent>
-      <div className="flex justify-between">
-        <div className="space-y-1">
-          <h4 className="text-sm font-semibold">{author.name}</h4>
-          <p className="text-sm">{author.affiliation}</p>
-        </div>
-      </div>
-    </HoverCardContent>
-  </HoverCard>
-);
-
 
 const Headline = () => (
   <PageHeader className="page-header pb-12 pt-4">
@@ -136,7 +63,7 @@ const Headline = () => (
         </PageHeaderDescription>
       </div>
     </PageHeaderHeading>
-    <section className="flex w-full items-center space-x-4 pb-1 pt-4 md:pb-1">
+    <section className="flex w-full items-center justify-center space-x-4 pb-1 pt-4 md:pb-1">
       <Link
         href={PAPER_URL}
         target="_blank"
@@ -162,6 +89,14 @@ const Headline = () => (
         <RocketIcon className="ml-0 h-4 w-4" />
         <Separator className="mx-2 h-4" orientation="vertical" />{" "}
         <span>Browse Dataset</span>
+      </Link>
+      <Link
+        href={DATASET_URL}
+        className={cn(buttonVariants({ variant: "outline" }), "rounded-[6px]")}
+      >
+        <DownloadIcon className="ml-0 h-4 w-4" />
+        <Separator className="mx-2 h-4" orientation="vertical" />{" "}
+        <span>Download Dataset</span>
       </Link>
     </section>
     <Separator className="my-2" />
@@ -190,7 +125,6 @@ const Headline = () => (
       <div className="flex justify-center items-center" style={{marginBottom: "20px"}} id="presup-levels">
         <PageSubHeading>Levels of Presupposition</PageSubHeading>
       </div>
-      {/* <ol className="list-decimal pl-4 custom-counter"> */}
       <ol className="list-disc pl-4 custom-counter">
         <li><span className="font-bold">Neutral:</span> At this level, queries do not contain any assumptions. This is akin to what a curious user might pose when seeking information.</li>        
         <li><span className="font-bold">Mild Presupposition:</span> Unlike the neutral category, queries at this level are suggestive, and include a tentative belief in the claim.</li>
@@ -202,7 +136,7 @@ const Headline = () => (
 
     <div className="pt-4 font-sans" style={{marginTop: "20px"}} id="evals">
       <div className="flex justify-center items-center" id="evals"> 
-        <PageSubHeading>Evaluations</PageSubHeading>
+        <PageSubHeading>Results</PageSubHeading>
       </div>
 
       <p className="pb-4" style={{ marginTop: "20px", justifyContent: "center"}}>Using UPHILL, we evaluate the factual accuracy and consistency of <span className="dsiiwa-interaction-color font-bold">InstructGPT</span>, <span className="dsiiwa-user-color font-bold">ChatGPT</span>, <span className="dsiiwa-ecosystem-color font-bold">GPT-4</span> and <span className="dsiiwa-task-color font-bold">Bing Copilot</span> models. We find that while model responses rarely contradict true health claims (posed as questions), all investigated models fail to challenge false claims. Alarmingly, responses from these models agree with 23–32% of the existing false claims, and 49–55% with novel fabricated claims. <b>As we increase the extent of presupposition in input queries, responses from all models except Bing Copilot agree with the claim considerably more often, regardless of its veracity.</b> Given the moderate factual accuracy, and the inability of models to challenge false assumptions, our work calls for a careful assessment of current LLMs for use in high-stakes scenarios.</p>
@@ -241,7 +175,6 @@ const Headline = () => (
     more consistent across all levels, although majority of them still agree with the fabricated claims.</p>    
     
     <div className="dsiiwa-figure"> 
-
       <Image
           src="/images/results-fc.png"
           width={850}
@@ -249,6 +182,7 @@ const Headline = () => (
           alt="Fabricated Claims Results"
           className="block"
       />
+      <p className="text-center md:text-sm" style={{marginTop: "20px"}}>Distribution of model responses that agree, disagree and are neutral with respect to fabricated claims.</p>
     </div> 
 
   </PageHeader>

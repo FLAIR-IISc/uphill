@@ -2,9 +2,6 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 
-import { Badge } from "@/components/ui/badge";
-import { Checkbox } from "@/components/ui/checkbox";
-
 import structuredFields from "../papers/structured_fields_uphill_small.json";
 import otherFields from "../papers/other_fields_uphill_small.json";
 import { Paper } from "../papers/schema";
@@ -12,26 +9,15 @@ import { DataTableColumnHeader } from "./data-table-column-header";
 // import { DataTableRowActions } from "./data-table-row-actions"
 import Link from 'next/link'
 
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
-
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card"
-
 import React, { useState } from 'react';
 
 interface ModelResponseCellProps {
   value: string;
+  width: string;
+  expandText: string;
 }
 
-const ModelResponseCell: React.FC<ModelResponseCellProps> = ({ value }) => {
+const ModelResponseCell: React.FC<ModelResponseCellProps> = ({ value, width, expandText }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleExpand = () => {
@@ -39,7 +25,7 @@ const ModelResponseCell: React.FC<ModelResponseCellProps> = ({ value }) => {
   };
 
   return (
-    <div className="w-[600px]">
+    <div className={width}>
       <div
         className={isExpanded ? "" : "truncate-text"}
         onClick={toggleExpand}
@@ -48,7 +34,7 @@ const ModelResponseCell: React.FC<ModelResponseCellProps> = ({ value }) => {
       </div>
       {!isExpanded && (
         <div className="expandable" onClick={toggleExpand}>
-          Read more
+          {expandText}
         </div>
       )}
       {isExpanded && (
@@ -59,15 +45,6 @@ const ModelResponseCell: React.FC<ModelResponseCellProps> = ({ value }) => {
     </div>
   );
 };
-
-const structuredFieldsGrouped = structuredFields.reduce((acc, field) => {
-  const key = field.category;
-  if (!acc[key]) {
-    acc[key] = [];
-  }
-  acc[key].push(field);
-  return acc;
-}, {} as Record<string, typeof structuredFields>);
 
 function capitalizeWords(input: string): string {
   return input.split(' ')
@@ -108,11 +85,15 @@ const otherFieldsColumns: ColumnDef<Paper>[] = otherFields.map(
         <DataTableColumnHeader column={column} title={capitalizeWords(field.name.replace(/_/g, " "))} />
       ),
       cell: ({ row }) => {
-        return <div className="w-[100px]">
+        if (field.name === "prediction_reasoning") {
+          return <ModelResponseCell value={row.getValue(field.name)} width="w-[400px]" expandText="⇩"/>;
+        }
+        else 
+        return <div className="w-[200px]">
           {row.getValue(field.name)}
           </div>;
       },
-      // enableHiding: true,
+      enableHiding: true,
     };
   }
 );
@@ -137,7 +118,7 @@ const paperDataColumns: ColumnDef<Paper>[] = [
       <DataTableColumnHeader column={column} title="Model Response" />
     ),
     cell: ({ row }) => {
-      return <ModelResponseCell value={row.getValue("model_response")} />;
+      return <ModelResponseCell value={row.getValue("model_response")} width="w-[600px]" expandText="Read More"/>;
     },
     enableHiding: false,
   },
