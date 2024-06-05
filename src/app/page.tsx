@@ -17,6 +17,10 @@ import {
   PageSubHeading
 } from "./components/page-header";
 
+import framework from "./assets/images/framework.png";
+import results from "./assets/images/results.png";
+import resultsfc from "./assets/images/results-fc.png";
+
 import TaskPage from "./paper";
 
 const TITLE = "Evaluating Large Language Models for Health-related Queries with Presuppositions";
@@ -113,7 +117,8 @@ const Headline = () => (
 
     <div className="dsiiwa-figure pt-8">
       <Image
-          src="/images/framework.png"
+          // src="/images/framework.png"
+          src={framework}
           width={2742}
           height={2092}
           alt="Framework for evaluation"
@@ -145,7 +150,8 @@ const Headline = () => (
 
     <div className="dsiiwa-figure">
       <Image
-          src="/images/results.png"
+          // src="/images/results.png"
+          src={results}
           width={2742}
           height={2092}
           alt="Results"
@@ -176,7 +182,8 @@ const Headline = () => (
     
     <div className="dsiiwa-figure"> 
       <Image
-          src="/images/results-fc.png"
+          // src="/images/results-fc.png"
+          src={resultsfc}
           width={850}
           height={785}
           alt="Fabricated Claims Results"
